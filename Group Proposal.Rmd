@@ -3,8 +3,8 @@ title: "Project Proposal: IMDB Movie Anaylsis"
 author: "Group 4"
 date: "8 March 2019"
 output:
-  word_document: default
   pdf_document: default
+  word_document: default
 ---
   
 ```{r setup, include=FALSE}
