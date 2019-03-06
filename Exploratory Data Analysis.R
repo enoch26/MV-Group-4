@@ -137,4 +137,18 @@ chart.Correlation(imdbData_factor_1, bg=imdbData_factor_1)
 chart.Correlation(imdbData_factor_1, bg=imdbData_factor_2)
 chart.Correlation(imdbData_factor_2, bg=imdbData_factor_2)
 
+par(mfrow = c(1, 3))
+plot(imdbData$imdb_score, imdbData$director_facebook_likes, 
+     xlab = "IMDB Score", 
+     ylab = "Number of Director Facebook Likes")
+plot(imdbData$num_voted_users, imdbData$director_facebook_likes,
+     xlab = "Number of Voted Users",
+     ylab = "Number of Director Facebook Likes")
+plot(imdbData$duration, imdbData$director_facebook_likes,
+     xlab = "Movie Duration",
+     ylab = "Number of Director Facebook Likes")
+
+
+
+
 
