@@ -1,6 +1,7 @@
 # LIBRARIES ---------------------------------------------------------------
 library(tidyverse)
 library(dplyr)
+require(naniar)
 
 # IMPORT DATA -------------------------------------------------------------
 imdbData <- read.csv("Data/IMDB Data.csv", header = TRUE)
