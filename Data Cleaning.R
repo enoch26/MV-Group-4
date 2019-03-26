@@ -38,6 +38,10 @@ missingData_factor <- which(is.na(imdbData_factor) | imdbData_factor == "",
                             arr.ind = TRUE)
 
 # REMOVE VARIABLES -------------------------------------------------------------
+# Look at missing values in variables and observations
+gg_miss_var(imdbData)
+gg_miss_case(imdbData)
+
 #movie_title, plot_keywords, movie_imdb_link and aspect_ratio
 remove_indices <- c(which(names(imdbData) == "movie_title"),
                     which(names(imdbData) == "plot_keywords"),
@@ -49,7 +53,7 @@ vis_miss(imdbData, cluster = TRUE)
 
 content_ratings_levels <- levels(imdbData$content_rating) #19 levels
 
-# FIX MISSING 
+# FIX MISSING ------------------------------------------------------------------
 ## Color: All appear to be color movies
 ## Content: Will group with "Not Rated"
 ## Country: Missing values appear to be American Movies
@@ -66,6 +70,21 @@ rm_observations <- which(imdbData$actor_1_name == "" |
                            is.na(imdbData$actor_3_facebook_likes))
 imdbData <- imdbData[-rm_observations, ]
 
+#Find where there is more than 1 missing value per observation
+missing_in_each_row <- rep(NA, nrow(imdbData))
+for(i in 1:nrow(imdbData)){
+  missing_in_each_row[i] <- sum(is.na(imdbData[i, ]) | (imdbData[i, ] == ""))
+}
+
+#If more than 1 missing value
+length(which(missing_in_each_row > 1))/nrow(imdbData)
+
+#If more than 2 missing values
+length(which(missing_in_each_row > 2))/nrow(imdbData)
+
+#Try remove 2 missing value first
+rm_observations <- which(missing_in_each_row > 2)
+imdbData <- imdbData[-rm_observations, ]
 
 vis_miss(imdbData, cluster = TRUE)
 
