@@ -12,6 +12,7 @@ glimpse(imdbData)
 imdbData[c(24,27)] <- lapply(imdbData[c(24,27)], factor) 
 
 #Missing values per column
+vis_miss(imdbData, cluster = TRUE)
 missingData <- which(is.na(imdbData) | imdbData == "", arr.ind = TRUE) #2698 Missing values
 nrow(missingData)
 
@@ -43,7 +44,29 @@ remove_indices <- c(which(names(imdbData) == "movie_title"),
                     which(names(imdbData) == "movie_imdb_link"),
                     which(names(imdbData) == "aspect_ratio"))
 imdbData <- imdbData[, -remove_indices]
-
+vis_miss(imdbData, cluster = TRUE)
 # CHANGE CONTENT RATINGS -------------------------------------------------------
 
 content_ratings_levels <- levels(imdbData$content_rating) #19 levels
+
+# FIX MISSING 
+## Color: All appear to be color movies
+## Content: Will group with "Not Rated"
+## Country: Missing values appear to be American Movies
+imdbData$color[imdbData$color == ""] <- "Color"
+imdbData$content_rating[imdbData$content_rating == ""] <- "Not Rated"
+imdbData$country[imdbData$country == ""] <- "USA"
+
+#Remove observations for where actor name and actor likes are missing
+rm_observations <- which(imdbData$actor_1_name == "" |
+                           is.na(imdbData$actor_1_facebook_likes) |
+                           imdbData$actor_2_name == "" |
+                           is.na(imdbData$actor_2_facebook_likes) |
+                           imdbData$actor_3_name == "" |
+                           is.na(imdbData$actor_3_facebook_likes))
+imdbData <- imdbData[-rm_observations, ]
+
+
+vis_miss(imdbData, cluster = TRUE)
+
+
