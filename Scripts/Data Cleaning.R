@@ -46,17 +46,13 @@ remove_variables <- c(which(names(imdbData) == "movie_title"),
 imdbData <- imdbData[, -remove_variables]
 vis_miss(imdbData, cluster = TRUE)
 
-<<<<<<< HEAD:Data Cleaning.R
 content_ratings_levels <- levels(imdbData$content_rating) #19 levels
 
 # FIX MISSING 
-||||||| merged common ancestors:Data Cleaning.R
 content_ratings_levels <- levels(imdbData$content_rating) #19 levels
 
 # FIX MISSING ------------------------------------------------------------------
-=======
 # FIX MISSING VALUES------------------------------------------------------------
->>>>>>> 6e6321e5817f068313782b276c79dffee8a65041:Scripts/Data Cleaning.R
 ## Color: All appear to be color movies
 ## Content: Will group with "Not Rated"
 ## Country: Missing values appear to be American Movies
@@ -73,8 +69,6 @@ rm_observations <- which(imdbData$actor_1_name == "" |
                            is.na(imdbData$actor_3_facebook_likes))
 imdbData <- imdbData[-rm_observations, ]
 
-<<<<<<< HEAD:Data Cleaning.R
-||||||| merged common ancestors:Data Cleaning.R
 #Find where there is more than 1 missing value per observation
 missing_in_each_row <- rep(NA, nrow(imdbData))
 for(i in 1:nrow(imdbData)){
@@ -90,7 +84,7 @@ length(which(missing_in_each_row > 2))/nrow(imdbData)
 #Try remove 2 missing value first
 rm_observations <- which(missing_in_each_row > 2)
 imdbData <- imdbData[-rm_observations, ]
-=======
+
 #Find where there is more than 1 missing value per observation
 missing_in_each_row <- rep(NA, nrow(imdbData))
 for(i in 1:nrow(imdbData)){
@@ -106,7 +100,6 @@ length(which(missing_in_each_row > 2))/nrow(imdbData)
 #Try remove 2 missing value first
 rm_observations <- which(missing_in_each_row > 2)
 imdbData <- imdbData[-rm_observations, ]
->>>>>>> 6e6321e5817f068313782b276c79dffee8a65041:Scripts/Data Cleaning.R
 
 vis_miss(imdbData, cluster = TRUE)
 
