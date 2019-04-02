@@ -5,6 +5,7 @@ imdbData <- read.csv("Data/IMDB Data.csv", header = T)
 require(naniar)
 require(raster)
 require(simputation)
+require(dplyr)
 
 # Search for hidden missing values (not coded as NA)
 # Remove leading and trailing spaces
