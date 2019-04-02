@@ -15,6 +15,12 @@ str(numData)
 # PCA
 pmovie <- princomp(na.omit(numData), scores = T, cor = T)
 summary(pmovie)
+# PC7 78.8% PC11 94.6%
+
+# Kaiser's criterion
+eigen(cov(na.omit(numData)))$values
+mean(eigen(cov(na.omit(numData)))$values)
+# suggest retain the first two components, seem too little
 
 # Screeplot
 screeplot(pmovie, type = "l", main = "Scree Plot of IMDb PCA Analysis")
@@ -22,11 +28,6 @@ screeplot(pmovie, type = "l", main = "Scree Plot of IMDb PCA Analysis")
 # Scores and loadings
 pscores <- pmovie$scores
 pload <- pmovie$loadings
-
-# Kaiser's criterion
-eigen(cov(na.omit(numData)))$values
-mean(eigen(cov(na.omit(numData)))$values)
-# retain the first two components 
 
 pload[, 1:8]
 # cast_total_facebook_likes in PC2 noteworthy
