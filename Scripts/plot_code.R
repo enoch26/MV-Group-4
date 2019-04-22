@@ -4,7 +4,24 @@ numData <- imdbData_Clean[sapply(imdbData_Clean, function(x) is.numeric(x))]
 str(numData)
 
 #Boxplots
-boxplot(scale(numData), las = 2)
+boxplot(scale(numData), las = 2, xaxt = "n")
+axis(1, las = 2, at = 1:15, labels = c("no. critic\nfor reviews",  
+                              "duration",                 
+                              "director\nFB likes",  
+                              "actor 3\nFB likes",  
+                              "actor 1\nFB likes",  
+                              "gross",               
+                              "no. voted\nusers",        
+                              "cast total\nFB likes",
+                              "face no.\nin poster",     
+                              "no. user\nfor reviews",
+                              "budget",              
+                              "title year",          
+                              "actor 2\nFB likes",  
+                              "imdb score",
+                              "movie FB\nlikes"))  
+
+names(numData)
 
 #PC Analysis
 imdbData_Clean <- read.csv("Clean IMDb Data.csv")
