@@ -1,3 +1,12 @@
+#Data
+imdbData_Clean <- read.csv("Data/Clean IMDb Data.csv")
+numData <- imdbData_Clean[sapply(imdbData_Clean, function(x) is.numeric(x))]
+str(numData)
+
+#Boxplots
+boxplot(scale(numData), las = 2)
+
+#PC Analysis
 imdbData_Clean <- read.csv("Clean IMDb Data.csv")
 imputed_data <- imdbData_Clean
 gross_cat <- rep(NA, nrow(imdbData_Clean))
@@ -166,3 +175,4 @@ plot(pmovie$scores[, 1], pmovie$scores[, 2],
      xlab = "PC1", ylab = "PC2", cex=0.6, lwd = 2, type = 'p',
      col = colr[as.numeric(cut(imputed_data$gross,breaks = 100))], pch = 16)
 legend.col(col = colr, lev = imputed_data$gross)
+
