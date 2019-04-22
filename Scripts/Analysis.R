@@ -6,6 +6,7 @@
 imdbData_Clean <- read.csv("Data/Clean IMDb Data.csv")
 glimpse(imdbData_Clean)
 # LOAD LIBARARIES --------------------------------------------------------------
+library(dplyr)
 library(corrplot)
 library(qgraph)
 
