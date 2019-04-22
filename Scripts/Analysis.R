@@ -12,6 +12,11 @@ library(qgraph)
 
 glimpse(imdbData_Clean)
 
+# outlier after scaling
+par(las=2, cex.axis = 0.4) 
+boxplot(scale(numData), ylim = c(-6.5,20))
+par(las=0, cex.axis = 1) 
+
 # PRINCIPLE COMPONENT ANALYSIS -------------------------------------------------
 # Extract numeric attributes
 numData <- imdbData_Clean[sapply(imdbData_Clean, function(x) is.numeric(x))]
@@ -23,9 +28,9 @@ summary(pmovie)
 # PC7 78.8% PC11 94.6%
 
 # Kaiser's criterion
-eigen(cov(na.omit(numData)))$values
-mean(eigen(cov(na.omit(numData)))$values)
-# suggest retain the first two components, seem too little
+eigen(cor(na.omit(numData)))$values
+mean(eigen(cor(na.omit(numData)))$values)
+# suggest retain the first four components
 
 # Screeplot
 screeplot(pmovie, type = "l", main = "Scree Plot of IMDb PCA Analysis")
@@ -72,15 +77,8 @@ biplot(pmovie,  xlabs=rep(".", nrow(imdbData_Clean)),
        choices = c(1,2), cex = 0.5, main = "Biplot of PC1 and PC2")
 # show two main directions except title year 
 # may explain the fan shape
-biplot(pmovie,  xlabs=rep(".", nrow(imdbData_Clean)), 
-       choices = c(1,3), cex = 0.5, main = "Biplot of PC1 and PC3")
 
 # Network graph
 corrplot(cor(na.omit(numData)), method="ellipse")
 qgraph(cor(na.omit(numData)))
 # all positive correlated
-
-# save plot
-plots.dir.path <- list.files(tempdir(), pattern="rs-graphics", full.names = TRUE); 
-plots.png.paths <- list.files(plots.dir.path, pattern=".png", full.names = TRUE)
-file.copy(from=plots.png.paths, to="../Scripts/output/")
