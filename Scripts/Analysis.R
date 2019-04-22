@@ -4,11 +4,13 @@
 
 # IMPORT DATASET ---------------------------------------------------------------
 imdbData_Clean <- read.csv("Data/Clean IMDb Data.csv")
-glimpse(imdbData_Clean)
+
 # LOAD LIBARARIES --------------------------------------------------------------
 library(dplyr)
 library(corrplot)
 library(qgraph)
+
+glimpse(imdbData_Clean)
 
 # PRINCIPLE COMPONENT ANALYSIS -------------------------------------------------
 # Extract numeric attributes
@@ -32,7 +34,7 @@ screeplot(pmovie, type = "l", main = "Scree Plot of IMDb PCA Analysis")
 pscores <- pmovie$scores
 pload <- pmovie$loadings
 
-pload[, 1:8]
+View(pload[, 1:8])
 # cast_total_facebook_likes dominates in PC2
 plot(pmovie$scores[,2],na.omit(numData)$cast_total_facebook_likes)
 
@@ -64,9 +66,10 @@ text(pmovie$scores[, 1], pmovie$scores[, 2],
      cex = 0.1, lwd = 2)
 
 # Biplot
-biplot(pmovie, xlabs=na.omit(imdbData_Clean)$content_rating, 
-       choices = c(1,2))
+biplot(pmovie,  xlabs=rep(".", nrow(imdbData_Clean)), 
+       choices = c(1,2), cex = 0.5, main = "Biplot of PC1 and PC2")
 # show two main directions except title year 
+# may explain the fan shape
 
 # Network graph
 corrplot(cor(na.omit(numData)), method="ellipse")
