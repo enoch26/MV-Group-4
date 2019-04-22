@@ -72,8 +72,15 @@ biplot(pmovie,  xlabs=rep(".", nrow(imdbData_Clean)),
        choices = c(1,2), cex = 0.5, main = "Biplot of PC1 and PC2")
 # show two main directions except title year 
 # may explain the fan shape
+biplot(pmovie,  xlabs=rep(".", nrow(imdbData_Clean)), 
+       choices = c(1,3), cex = 0.5, main = "Biplot of PC1 and PC3")
 
 # Network graph
 corrplot(cor(na.omit(numData)), method="ellipse")
 qgraph(cor(na.omit(numData)))
 # all positive correlated
+
+# save plot
+plots.dir.path <- list.files(tempdir(), pattern="rs-graphics", full.names = TRUE); 
+plots.png.paths <- list.files(plots.dir.path, pattern=".png", full.names = TRUE)
+file.copy(from=plots.png.paths, to="../Scripts/output/")
