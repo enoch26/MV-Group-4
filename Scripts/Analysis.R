@@ -36,7 +36,9 @@ pload <- pmovie$loadings
 
 View(pload[, 1:8])
 # cast_total_facebook_likes dominates in PC2
-plot(pmovie$scores[,2],na.omit(numData)$cast_total_facebook_likes)
+plot(pmovie$scores[,2],na.omit(numData)$cast_total_facebook_likes,
+     xlab = "PC2", ylab = "Cast Total Facebook Likes", 
+     main = "Plot of Cast Total Facebook Likes against PC2 ")
 
 # Exploring Important Vairbales
 ## Equilibrium Contribution
