@@ -193,3 +193,13 @@ plot(pmovie$scores[, 1], pmovie$scores[, 2],
      col = colr[as.numeric(cut(imputed_data$gross,breaks = 100))], pch = 16)
 legend.col(col = colr, lev = imputed_data$gross)
 
+colr <- rev(terrain.colors(100))
+plot(pmovie$scores[, 1], pmovie$scores[, 2],
+     ylim = range(-10,8),
+     xlab = "PC1", ylab = "PC2", cex=0.6, lwd = 2, type = 'p',
+     col = colr[as.numeric(cut(imputed_data$gross,breaks = 100))], pch = 16)
+grid()
+legend.col(col = colr, lev = imputed_data$gross)
+
+
+

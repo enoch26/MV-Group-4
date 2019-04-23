@@ -12,10 +12,6 @@ library(qgraph)
 
 glimpse(imdbData_Clean)
 
-# outlier after scaling
-par(las=2, cex.axis = 0.4) 
-boxplot(scale(numData), ylim = c(-6.5,20))
-par(las=0, cex.axis = 1) 
 
 # PRINCIPLE COMPONENT ANALYSIS -------------------------------------------------
 # Extract numeric attributes
@@ -39,7 +35,7 @@ screeplot(pmovie, type = "l", main = "Scree Plot of IMDb PCA Analysis")
 pscores <- pmovie$scores
 pload <- pmovie$loadings
 
-View(pload[, 1:8])
+pload[, 1:8]
 # cast_total_facebook_likes dominates in PC2
 plot(pmovie$scores[,2],na.omit(numData)$cast_total_facebook_likes,
      xlab = "PC2", ylab = "Cast Total Facebook Likes", 
@@ -49,6 +45,7 @@ plot(pmovie$scores[,2],na.omit(numData)$cast_total_facebook_likes,
 ## Equilibrium Contribution
 eCriterion <- 1/sqrt(ncol(numData))
 length(which(abs(pload[, 1]) > eCriterion)) #Suggests 7 variables
+(abs(pload[, 1]) > eCriterion)
 
 ## Mardia's Criterion 
 mCriterion <- 0.7 * max(pload[, 1])
@@ -74,7 +71,7 @@ text(pmovie$scores[, 1], pmovie$scores[, 2],
 
 # Biplot
 biplot(pmovie,  xlabs=rep(".", nrow(imdbData_Clean)), 
-       choices = c(1,2), cex = 0.5, main = "Biplot of PC1 and PC2")
+       choices = c(1,2), cex = 0.7, main = "Biplot of PC1 and PC2", xlim=c(-0.05, 0.2), ylim=c(-0.2, 0.1))
 # show two main directions except title year 
 # may explain the fan shape
 
