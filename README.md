@@ -1,3 +1,8 @@
 # MV-Group-4
 
 This is a group project of the multivariate analysis course at University of St Andrews. It consists of a movie dataset from IMDb. 
+
+Due to the increasing popularity of social platforms, the social media campaign has now become an important marketing tactic in the movie industry. Previous research, such as Pardo’s paper (2013), found that social media has a great impact on movies, qualitatively. In this study, we aim to investigate the quantitative relationship between social media and movie performance such as box office and movie ratings. There have been many cases when movie critics have given poor reviews and yet the movie has gone on to be a box office success. This gives us more reason to believe that there is additional structure in the dataset which hopefully can be explored using the social media related covariates. Thus, by combining the analysis of the continuous variables with the factor variables, we hope to uncover any such hidden structures. Further to this, we aim to explore the relationships among box office grosses, budget and the country of origin. An exploartion into inter-country, or in a broader sense, inter-continent differences between movie performace and characteristics, such as non-mainstream films, low-budget or independent films, and their corresponding public perception on social media could expose an interesting viewpoint on the diversity of IMDb rated movies.
+
+## Reference List
+Pardo, A., 2013. Digital Hollywood: How Internet and Social media are changing the movie business. In Handbook of Social Media Management (pp. 327-347). Springer, Berlin, Heidelberg.
